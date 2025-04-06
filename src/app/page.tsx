@@ -1,95 +1,135 @@
 import Link from 'next/link'
-import { Anchor, Search, Ship } from 'lucide-react'
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       {/* Hero Section */}
-      <section className="relative h-[80vh] bg-gradient-to-r from-blue-600 to-blue-400">
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-center mb-6">
-            Your Luxury Maritime Experience Awaits
-          </h1>
-          <p className="text-xl md:text-2xl text-center mb-8 max-w-3xl">
-            Discover premium yacht charters, connect with experienced captains, and manage your fleet - all in one place.
-          </p>
-          
-          {/* Search Bar */}
-          <div className="w-full max-w-4xl bg-white/10 backdrop-blur-md rounded-lg p-4 space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-3 h-5 w-5 text-gray-300" />
-                <input
-                  type="text"
-                  placeholder="Location"
-                  className="w-full pl-10 pr-4 py-2 bg-white/20 rounded-md placeholder-gray-300 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50"
-                />
-              </div>
-              <div className="relative">
-                <Ship className="absolute left-3 top-3 h-5 w-5 text-gray-300" />
-                <select className="w-full pl-10 pr-4 py-2 bg-white/20 rounded-md text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 appearance-none">
-                  <option value="">Yacht Type</option>
-                  <option value="motor">Motor Yacht</option>
-                  <option value="sail">Sailing Yacht</option>
-                  <option value="catamaran">Catamaran</option>
-                </select>
-              </div>
-              <div className="relative">
-                <Anchor className="absolute left-3 top-3 h-5 w-5 text-gray-300" />
-                <select className="w-full pl-10 pr-4 py-2 bg-white/20 rounded-md text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 appearance-none">
-                  <option value="">Service Type</option>
-                  <option value="charter">Full Charter</option>
-                  <option value="captain">Captain Only</option>
-                  <option value="bareboat">Bareboat</option>
-                </select>
-              </div>
-            </div>
-            <button className="w-full md:w-auto px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition-colors">
-              Search Available Yachts
-            </button>
+      <section className="relative h-screen">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero.png"
+            alt="Luxury yacht at sunset"
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+            quality={100}
+          />
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative h-full flex flex-col justify-center px-4">
+          <div className="container mx-auto max-w-6xl">
+            <h1 className="text-5xl md:text-7xl font-semibold text-white mb-6">
+              Experience Luxury<br />on the Water
+            </h1>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl">
+              Discover the world's finest yachts for charter in the most beautiful destinations
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="text-base bg-white text-gray-900 hover:bg-white/90"
+            >
+              <Link href="/yachts">
+                Begin Your Voyage
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="ml-2 h-4 w-4"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 dark:text-white">
-            Why Choose Yachti?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-lg bg-gray-50 dark:bg-gray-800 hover:shadow-lg transition-shadow"
-              >
-                <feature.icon className="h-12 w-12 text-blue-500 mb-4" />
-                <h3 className="text-xl font-semibold mb-2 dark:text-white">{feature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
-              </div>
-            ))}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-semibold text-gray-900 mb-12 text-center">
+              Why Choose Yachti?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {features.map((feature, index) => (
+                <div key={index} className="text-center">
+                  <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50">
+                    <feature.icon className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }
 
 const features = [
   {
-    icon: Ship,
-    title: 'Premium Fleet',
-    description: 'Access to a curated selection of luxury yachts, maintained to the highest standards.',
+    icon: ({ className }: { className?: string }) => (
+      <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    ),
+    title: 'Global Destinations',
+    description: 'Access exclusive yacht charters in the most sought-after locations worldwide.',
   },
   {
-    icon: Anchor,
-    title: 'Expert Captains',
-    description: 'Connect with experienced, licensed captains for a safe and enjoyable journey.',
+    icon: ({ className }: { className?: string }) => (
+      <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+    ),
+    title: 'Curated Experiences',
+    description: 'Every yacht in our fleet is hand-selected to ensure the highest standards of luxury.',
   },
   {
-    icon: Search,
-    title: 'Easy Management',
-    description: 'Powerful tools for yacht owners and charter companies to manage their fleet efficiently.',
+    icon: ({ className }: { className?: string }) => (
+      <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+      </svg>
+    ),
+    title: 'Secure Booking',
+    description: 'Book with confidence using our secure platform and verified owner profiles.',
   },
 ]
