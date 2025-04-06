@@ -1,6 +1,8 @@
 import { Quicksand } from 'next/font/google'
 import type { Metadata } from 'next'
 
+import { Navbar } from '@/components/shared/navbar'
+import { Footer } from '@/components/shared/footer'
 import '@/styles/globals.css'
 
 const quicksand = Quicksand({
@@ -21,10 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={quicksand.className}>
-      <body className="min-h-screen bg-white dark:bg-gray-900">
-        <main className="flex min-h-screen flex-col">
-          {children}
-        </main>
+      <body className="min-h-screen bg-white antialiased">
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   )
